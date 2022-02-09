@@ -3,7 +3,7 @@
 #include <time.h>
 #define MAX 20
 
-//Static list ordenation using dual pivot quicksort.
+//Random static list ordenation using dual pivot quicksort.
 int main()
 {
     int V[MAX], i, op;
