@@ -1,21 +1,9 @@
-//Caio Rodrigues da silva
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #define MAX 20
 
-/* A escolha do quicksort foi dada pelo seu desempenho em comparação aos demais algoritmos de ordenação por divisão e conquista,
-especialmente a versão com pivo duplo usada, porém mesmo que essa seja uma versão mais atualizada do algoritmo ele ainda tem
-uma complexidade de pior caso que é compáravel ao do bubble sort dado que T(n)=(n-1)+O(n) resultará em T(n)=(O^2) o que é
-inescapavel para o quicksort, quando encontrado com o caso onde as chamadas recursivas geram partições desbalanceadas com
-tamanho 0 e n-1 elementos que ocorre quando o array está ordenado de forma crescente ou decrescente no qual o pivo é o maior
-ou menor elemento dependente ao método de implementação, se esse desbalanceamento acontecer a cada chamada então recursivamente
-a cada etapa serão separadas listas de tamanho iguais a anterior, mesmo que o algoritmo tenha esta pequena vulnerabilidade a
-eficiência do quicksort é trazida a frente no seu melhor caso e no seu caso de complexidade médio que porém de ser o mesmo que
-o do mergesort O(n log n) supera a sua velocidade pela forma como os dois algoritmos utilizam-se de partições e trocas.
-*/
-
-//Lista estática com ordenação usando quicksort.
+//Static list ordenation using dual pivot quicksort.
 int main()
 {
     int V[MAX], i, op;
