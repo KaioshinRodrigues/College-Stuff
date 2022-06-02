@@ -9,7 +9,7 @@ int main(int argc, char *argv[]){
     int *buffer = (int *) shm_create("buffer", buffer_size, O_CREAT | O_RDWR, 0666, PROT_READ | PROT_WRITE);
     int *count = (int *) shm_create("count", sizeof(int), O_CREAT | O_RDWR, 0666, PROT_READ | PROT_WRITE);
     
-        if(*count != 0){
+        while(*count != 10){
         int item_consumed = buffer[out];
         out = (out + 1) % BUFFER_SIZE;
         (*count)--;

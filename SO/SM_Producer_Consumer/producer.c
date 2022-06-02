@@ -10,7 +10,7 @@ int main(int argc, char *argv[]){
     int *buffer = (int *) shm_create("buffer", buffer_size, O_CREAT | O_RDWR, 0666, PROT_READ | PROT_WRITE);
     int *count = (int *) shm_create("count", sizeof(int), O_CREAT | O_RDWR, 0666, PROT_READ | PROT_WRITE);
 
-        if(*count <= BUFFER_SIZE){
+        while(*count <= BUFFER_SIZE){
         buffer[in] = item++;
         in = (in + 1) % BUFFER_SIZE;
         (*count)++;
