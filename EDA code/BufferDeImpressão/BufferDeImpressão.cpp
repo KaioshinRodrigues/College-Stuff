@@ -1,80 +1,73 @@
 #include <iostream>
-
+#include <stdlib.h>
 using namespace std;
 
 struct buffer{
-    int cod;
-    struct buffer*prox;
+	int cod;
+	struct buffer* next;
 };
-typedef struct buffer*bufferPtr;
+typedef struct buffer * bufferPtr;
+bufferPtr top = NULL;
+bufferPtr last = NULL;
 
-bufferPtr topo = NULL;
+bool emptyList();
+void enqueue();
+void dequeue();
 
-bool listaVazia(){
-    if(topo)
-        return false;
-    else
-        return true;
+
+int main(){
+	int op;
+
+	do{
+		cout << "Escolha uma opcao: \n";
+		cout << "0: Sair \n";
+		cout << "1: Enviar pacote \n";
+		cout << "2: Imprimir Pacote \n";
+		cin >> op;
+		switch (op){
+			case 1: enqueue();
+				break;
+			case 2: dequeue();
+				break;
+		}
+		if (op!=0 && op!=1 && op!=2){
+			cout << "Opcao invalida! \n\n";
+		}
+	}while (op!=0);
+
+
+return 0;
 }
 
-void enviar(){
-    bufferPtr p;
-    int valor;
-
-    p = new buffer;
-    cout<<"Digite o codigo do pacote:";
-    cin>>valor;
-    p-> cod = valor;
-    p-> prox = topo;
-    topo = p;
+bool emptyList(){
+	if (top == NULL){return true;}
+	return false;
 }
-
-buffer *imprimir(){
-    bufferPtr p = topo;
-
-    if(topo->prox == NULL){
-
-        cout << "\nO buffer de impressao esta vazio" << endl;
-        return NULL;
-    } else{
-        buffer *ult = topo->prox, *penult = topo;
-        while(ult->prox != NULL){
-           penult = ult;
-           ult = ult->prox;
-    }
-        penult->prox = NULL;
-
-        cout << "\nO pacote foi impresso e retirado." << endl;
-
-        if(!listaVazia()){
-        cout <<"\n Codigo dos pacotes"
-        << "\n\nespera -> ";
-        while(p != NULL){
-            cout << p->cod << "\t";
-            p = p->prox;
-        }
-        cout << "-> imprimido\n\n";
-    }
-
-        return ult;
-    }
+void enqueue(){
+	bufferPtr p = new buffer;
+	cout << "Insira o codigo do pacote: ";
+	cin >> p -> cod;
+	p -> next = NULL;
+	if (emptyList()){
+		top = p;
+		last = p;
+	}
+	else{
+		bufferPtr aux = last;
+		aux -> next = p;
+		last = p;
+	}
 
 }
+void dequeue(){
+	if (emptyList()){
+		cout << "O Buffer esta vazio! \n\n";
+	}
+	else {
+		bufferPtr p = top;
+		top = p -> next;
+		cout << "O elemento de codigo " << p -> cod << " foi impresso" << endl;
+		delete p;
+	}
 
-int main()
-{
-    int op;
-
-    do{
-        cout << "\nInformar o seu uso desejado da impressora:"
-         << "\n1. Enviar pacote e armazenar"
-         << "\n2. Imprimir pacote e remover"
-         << "\n0. Sair"
-         << "\n: ";
-        cin >> op;
-        switch(op){
-            case 1: enviar(); break;
-            case 2: imprimir(); break;
-        }
-    } while(op!=0);
 }

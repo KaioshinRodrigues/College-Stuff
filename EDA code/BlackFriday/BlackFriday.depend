@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1648032958 source:c:\users\caio\documents\eda code\blackfriday\main.cpp
+	<iostream>
+	<stdlib.h>
+
